@@ -1,332 +1,654 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snehadri Dutta | vCard Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f1f5f9; /* slate-100 */
-            color: #0f172a;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        /* Smooth fade transition for tabs */
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease-out forwards;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snehadri Dutta | Senior Machine Learning Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
 
-        /* Nav Link Active State */
-        .nav-link.active {
-            color: #2563eb; /* blue-600 */
-            font-weight: 600;
-        }
-        
-        /* Custom Scrollbar for inner content if needed */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-    </style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#0d1117;color:#f2f5f7;font-family:'Inter',sans-serif;line-height:1.6;font-size:15px;}
+
+.container{width:1100px;max-width:92%;margin:auto;}
+section{padding:60px 0;}
+h2{font-size:28px;margin-bottom:18px;}
+h3{font-size:17px;margin-bottom:8px;}
+p{color:#b9c0ca;}
+
+/* NAV */
+nav{position:fixed;width:100%;background:#0d1117ee;backdrop-filter:blur(12px);border-bottom:1px solid #1f2937;z-index:100;}
+nav .container{display:flex;justify-content:space-between;align-items:center;padding:16px 0;}
+.logo{font-weight:700;font-size:18px;}
+.menu{display:flex;gap:24px;}
+.menu a{color:#d4d4d4;text-decoration:none;font-size:14px;}
+.menu a:hover{color:#fff;}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:22px;height:2px;background:#d4d4d4;border-radius:2px;transition:all 0.3s;}
+/* mobile-menu hidden by default, toggled via JS */
+.mobile-menu{display:none;flex-direction:column;gap:0;border-top:1px solid #1f2937;}
+.mobile-menu a{padding:12px 0;color:#d4d4d4;text-decoration:none;font-size:14px;border-bottom:1px solid #1a2233;}
+.mobile-menu a:hover{color:#fff;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;}
+.hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:50px;align-items:center;}
+.tag{display:inline-block;padding:6px 14px;border-radius:40px;background:#18202d;color:#67e8f9;margin-bottom:18px;font-size:13px;}
+.hero h1{font-size:52px;line-height:1.1;margin-bottom:0;}
+.hero p{margin:20px 0 0;font-size:16px;}
+.buttons{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;}
+.btn{padding:11px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;transition:opacity 0.2s;}
+.primary{background:#2563eb;color:white;}
+.secondary{border:1px solid #2563eb;color:#2563eb;}
+.btn:hover{opacity:0.85;}
+
+/* CARDS */
+.card{background:#161b22;border:1px solid #252d38;border-radius:12px;padding:22px;}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.metric{text-align:center;}
+.metric h1{font-size:36px;color:#3b82f6;margin-bottom:4px;}
+.metric p{font-size:13px;}
+
+/* SKILLS */
+.grid{display:grid;gap:20px;}
+.skills{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+.skill-box ul{list-style:none;margin-top:4px;}
+.skill-box li{margin:6px 0;color:#bfc6cf;font-size:14px;}
+
+/* EXPERIENCE */
+.timeline{display:grid;gap:22px;}
+.exp-card{position:relative;}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+.company{color:#60a5fa;font-weight:600;font-size:14px;margin-bottom:2px;}
+.exp-period{color:#6b7280;font-size:13px;}
+.exp-summary{margin-top:10px;font-size:14px;}
+
+/* VIEW MORE BUTTON — matches shared image style */
+.view-more-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  flex-shrink:0;margin-top:4px;
+  padding:6px 14px;
+  background:transparent;
+  border:1px solid #3b4a63;
+  border-radius:6px;
+  color:#7c8fa8;
+  font-size:12px;font-weight:500;
+  cursor:pointer;
+  transition:border-color 0.2s, color 0.2s;
+  white-space:nowrap;
+  letter-spacing:0.02em;
+}
+.view-more-btn:hover{border-color:#60a5fa;color:#93c5fd;}
+.view-more-btn svg{transition:transform 0.2s;}
+.view-more-btn:hover svg{transform:translate(1px,-1px);}
+
+/* PROJECTS */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;}
+.project{position:relative;}
+.project-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;}
+.project-header h3{margin-bottom:0;}
+.gh-icon{flex-shrink:0;color:#6b7280;transition:color 0.2s;margin-top:1px;}
+.gh-icon:hover{color:#e6edf3;}
+.project-footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:10px;}
+.tech{display:flex;flex-wrap:wrap;gap:8px;}
+.tech span{padding:4px 10px;background:#202938;border-radius:30px;font-size:12px;color:#94a3b8;}
+
+.modal-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:4px;flex-wrap:nowrap;}
+.modal-header h3{margin-bottom:0;flex:1;min-width:0;}
+.modal-gh{color:#6b7280;transition:color 0.2s;flex-shrink:0;margin-top:2px;}
+.modal-gh:hover{color:#e6edf3;}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.active{display:flex;}
+.modal{background:#161b22;border:1px solid #252d38;border-radius:14px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;position:relative;}
+.modal h3{font-size:19px;margin-bottom:4px;}
+.modal-company{color:#60a5fa;font-size:13px;margin-bottom:18px;}
+.modal-close{position:absolute;top:16px;right:18px;background:none;border:none;color:#6b7280;font-size:18px;cursor:pointer;line-height:1;transition:color 0.15s;}
+.modal-close:hover{color:#fff;}
+.modal ul{list-style:none;display:grid;gap:10px;}
+.modal ul li{color:#b9c0ca;font-size:14px;padding-left:16px;position:relative;line-height:1.6;}
+.modal ul li::before{content:'';position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#3b82f6;}
+
+/* CONTACT */
+.contact-links{display:grid;gap:10px;margin-top:16px;}
+.contact-links a{color:#60a5fa;text-decoration:none;font-size:15px;}
+.contact-links a:hover{text-decoration:underline;}
+
+/* HERO CARD */
+.hero-card p{font-size:14px;color:#b9c0ca;margin:4px 0;}
+
+/* ABOUT */
+#about p{font-size:15px;line-height:1.8;}
+#about p+p{margin-top:14px;}
+
+/* PRINCIPLES */
+.principles-card p{font-size:14px;line-height:1.7;}
+
+/* FOOTER */
+footer{padding:30px 0;border-top:1px solid #1a2233;text-align:center;}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:36px;}
+  .metrics{grid-template-columns:repeat(2,1fr);}
+  .hero-card-wrapper{display:none;}
+}
+@media(max-width:640px){
+  .menu{display:none;}
+  .hamburger{display:flex;}
+  section{padding:44px 0;}
+  .hero{padding-top:70px;}
+  .hero h1{font-size:30px;}
+  .metrics{grid-template-columns:repeat(2,1fr);gap:14px;}
+  .metric h1{font-size:28px;}
+  .project-grid{grid-template-columns:1fr;}
+  .modal{padding:20px;}
+}
+</style>
 </head>
-<body class="min-h-screen py-10 px-4 flex justify-center items-start lg:items-center">
+<body>
 
-    <main class="w-full max-w-[1400px] flex flex-col lg:flex-row gap-6 items-start lg:items-stretch">
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="logo">Snehadri Dutta</div>
+    <div class="menu">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu container" id="mobileMenu" style="display:none;">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-        <aside class="w-full lg:w-[340px] shrink-0 bg-white rounded-3xl p-8 shadow-sm border border-slate-200 sticky top-10 flex flex-col items-center text-center">
-            
-            <div class="w-32 h-32 bg-slate-800 rounded-3xl flex items-center justify-center text-white text-4xl font-bold shadow-lg mb-6 rotate-3 hover:rotate-0 transition-transform duration-300">
-                SD
-            </div>
-            
-            <h1 class="text-3xl font-bold text-slate-900 mb-2">Snehadri Dutta</h1>
-            <div class="px-4 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium mb-6">
-                Senior AI Engineer
-            </div>
-            
-            <div class="w-full h-px bg-slate-200 mb-6"></div>
-            
-            <div class="w-full space-y-4 text-left">
-                
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 border border-slate-100 flex-shrink-0">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <div>
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Email</p>
-                        <a href="mailto:dutta.snehadri@gmail.com" class="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors">dutta.snehadri@gmail.com</a>
-                    </div>
-                </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="tag">Senior Machine Learning Engineer</div>
+      <h1>Building Production-Grade AI Systems</h1>
+      <p>I design scalable AI products powered by LLMs, Agentic AI, Deep Learning, and high-performance backend systems. My focus is on turning cutting-edge AI research into reliable products that solve real business problems.</p>
+      <div class="buttons">
+        <a class="btn primary" href="#">Download Resume</a>
+        <a class="btn secondary" href="https://github.com/SnehadriDutta" target="_blank">View GitHub</a>
+      </div>
+    </div>
+    <div class="hero-card-wrapper">
+      <div class="card hero-card">
+        <h3 style="margin-bottom:12px;">Currently Working With</h3>
+        <p>• Agentic AI</p>
+        <p>• LangGraph</p>
+        <p>• LLM Orchestration</p>
+        <p>• RAG Systems</p>
+        <p>• Hybrid Search</p>
+        <p>• FastAPI</p>
+        <p>• Groq</p>
+        <p>• Ollama</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 border border-slate-100 flex-shrink-0">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    </div>
-                    <div>
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Location</p>
-                        <p class="text-sm font-medium text-slate-700">Navi Mumbai, India</p>
-                    </div>
-                </div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <h2>About Me</h2>
+    <p>I'm a Senior Machine Learning Engineer with a background in software engineering and a passion for building production-ready AI systems. Over the past few years, I've designed and deployed AI solutions ranging from LLM-powered assistants and autonomous agent workflows to enterprise RAG systems, recommendation engines, NLP pipelines, computer vision models, and financial intelligence platforms.</p>
+    <p>I enjoy working across the entire AI lifecycle—from data preparation and model development to deployment, optimization, and monitoring—with a strong emphasis on scalability, performance, and maintainability. Whether it's orchestrating multi-agent systems, integrating AI with enterprise platforms, or optimizing inference for low-latency applications, I enjoy solving problems that have measurable business impact.</p>
+    <p>I'm currently focused on advancing my expertise in LLMs, agentic architectures, multimodal AI, and applied machine learning while continuing to build intelligent systems that are reliable, scalable, and production-ready. My goal is to contribute to products where AI becomes a core capability rather than just a feature.</p>
+  </div>
+</section>
 
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 border border-slate-100 flex-shrink-0">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
-                    </div>
-                    <div>
-                        <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">GitHub</p>
-                        <a href="https://github.com/snehadridutta" target="_blank" class="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors">github.com/snehadridutta</a>
-                    </div>
-                </div>
+<!-- METRICS -->
+<section style="padding:0 0 60px;">
+  <div class="container">
+    <div class="metrics">
+      <div class="metric card"><h1>5+</h1><p>Years Experience</p></div>
+      <div class="metric card"><h1>15+</h1><p>AI Projects</p></div>
+      <div class="metric card"><h1>6+</h1><p>Production Systems</p></div>
+      <div class="metric card"><h1>3</h1><p>AI Domains</p></div>
+    </div>
+  </div>
+</section>
 
-            </div>
-            
-            <a href="Snehadri_Dutta_Resume.pdf" download class="mt-auto pt-8 w-full">
-                <div class="w-full py-3 bg-slate-900 text-white rounded-xl font-medium hover:bg-slate-800 transition-colors shadow-sm flex items-center justify-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Download Resume
-                </div>
-            </a>
-            
-        </aside>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <h2>Experience</h2>
+    <div class="timeline">
 
-        <section class="flex-1 bg-white rounded-3xl shadow-sm border border-slate-200 relative overflow-hidden min-h-[600px] flex flex-col">
-            
-            <nav class="bg-slate-50 border-b border-l border-slate-200 rounded-bl-3xl absolute top-0 right-0 z-10 hidden sm:block">
-                <ul class="flex font-medium text-sm text-slate-500">
-                    <li><button onclick="switchTab('about')" class="nav-link active px-8 py-5 hover:text-blue-600 transition-colors" data-target="about">About</button></li>
-                    <li><button onclick="switchTab('resume')" class="nav-link px-8 py-5 hover:text-blue-600 transition-colors" data-target="resume">Resume</button></li>
-                    <li><button onclick="switchTab('projects')" class="nav-link px-8 py-5 hover:text-blue-600 transition-colors" data-target="projects">Projects</button></li>
-                </ul>
-            </nav>
+      <div class="card exp-card">
+        <div class="exp-header">
+          <div class="exp-meta">
+            <h3>Senior Machine Learning Engineer</h3>
+            <div class="company">Nerve Solutions</div>
+            <div class="exp-period">October 2025 – Present &nbsp;·&nbsp; Mumbai, India</div>
+          </div>
+          <button class="view-more-btn" onclick="openModal('exp-senior')">
+            View More
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <p class="exp-summary">Architecting production-grade AI systems using LangGraph, LLMs, Agentic AI, FastAPI, and Groq. Built a Financial Intelligence Agent and an AI Developer Assistant; responsible for deployment, prompt engineering, inference optimization, and technical leadership.</p>
+      </div>
 
-            <nav class="bg-slate-50 border-b border-slate-200 sm:hidden block w-full">
-                <ul class="flex font-medium text-sm text-slate-500 justify-around">
-                    <li><button onclick="switchTab('about')" class="nav-link active py-4 hover:text-blue-600 transition-colors" data-target="about">About</button></li>
-                    <li><button onclick="switchTab('resume')" class="nav-link py-4 hover:text-blue-600 transition-colors" data-target="resume">Resume</button></li>
-                    <li><button onclick="switchTab('projects')" class="nav-link py-4 hover:text-blue-600 transition-colors" data-target="projects">Projects</button></li>
-                </ul>
-            </nav>
+      <div class="card exp-card">
+        <div class="exp-header">
+          <div class="exp-meta">
+            <h3>Developer Analyst</h3>
+            <div class="company">Nerve Solutions</div>
+            <div class="exp-period">March 2021 – September 2025 &nbsp;·&nbsp; Mumbai, India</div>
+          </div>
+          <button class="view-more-btn" onclick="openModal('exp-analyst')">
+            View More
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <p class="exp-summary">Built high-performance backend systems for a real-time financial trading platform. Developed ML-powered recommendation systems, real-time risk monitoring, and scalable backend services. Led development teams and delivered releases contributing to 30% enterprise client growth.</p>
+      </div>
 
-            <div class="p-8 sm:pt-28 pt-8 flex-1">
+    </div>
+  </div>
+</section>
 
-                <article id="about" class="tab-content active h-full">
-                    <h2 class="text-3xl font-bold text-slate-900 mb-6 pb-4 border-b border-slate-100 relative after:content-[''] after:absolute after:bottom-[-1px] after:left-0 after:w-10 after:h-1 after:bg-blue-600 after:rounded-full">About Me</h2>
-                    
-                    <div class="grid grid-cols-1 xl:grid-cols-12 gap-10">
-                        <div class="xl:col-span-7">
-                            <p class="text-slate-600 leading-relaxed mb-4 text-lg">
-                                I am a Senior AI Engineer specializing in the design, deployment, and operation of agentic AI systems and scalable RAG architectures. Combining deep Python/FastAPI expertise with a background in distributed systems and C#/.NET, I build robust, secure, and cost-optimized AI platforms.
-                            </p>
-                            <p class="text-slate-600 leading-relaxed mb-8 text-lg">
-                                My strongest differentiator is my ability to bridge complex AI research with enterprise reality. I don't just build models; I lead cross-functional development teams (app, web, backend) to deliver full-stack, production-grade AI solutions. I take full ownership of international client relationships, ensuring technical deliverables map directly to measurable business outcomes.
-                            </p>
-                        </div>
-                        
-                        <div class="xl:col-span-5 bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                            <h3 class="text-xl font-bold text-slate-800 mb-4">Core Strengths</h3>
-                            <div class="flex flex-col gap-3">
-                                <span class="px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 shadow-sm flex items-center gap-3">
-                                    <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    5+ Years Experience
-                                </span>
-                                <span class="px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 shadow-sm flex items-center gap-3">
-                                    <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                    Senior AI Engineer & Team Lead
-                                </span>
-                                <span class="px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 shadow-sm flex items-center gap-3">
-                                    <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                                    Agentic AI Specialist
-                                </span>
-                                <span class="px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 shadow-sm flex items-center gap-3">
-                                    <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    International Client Ownership
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <h2>Featured Projects</h2>
+    <div class="project-grid">
 
-                <article id="resume" class="tab-content">
-                    <h2 class="text-3xl font-bold text-slate-900 mb-8 pb-4 border-b border-slate-100 relative after:content-[''] after:absolute after:bottom-[-1px] after:left-0 after:w-10 after:h-1 after:bg-blue-600 after:rounded-full">Resume</h2>
-                    
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                        
-                        <div class="lg:col-span-7">
-                            <h3 class="flex items-center gap-3 text-xl font-bold text-slate-800 mb-6">
-                                <div class="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center text-blue-600 shadow-sm border border-slate-200">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                </div>
-                                Experience
-                            </h3>
-                            
-                            <div class="relative pl-6 border-l-2 border-slate-100 space-y-8">
-                                <div class="relative">
-                                    <div class="absolute w-3 h-3 bg-blue-600 rounded-full -left-[29px] top-1.5 shadow-[0_0_0_4px_#eff6ff]"></div>
-                                    <h4 class="text-lg font-bold text-slate-900">Senior ML Engineer & Team Lead</h4>
-                                    <p class="text-sm font-medium text-blue-600 mb-2">Nerve Solutions <span class="text-slate-400 mx-2">•</span> Oct 2025 - Present</p>
-                                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
-                                        <li>Led cross-functional teams, taking full accountability for end-to-end AI system delivery for international clients.</li>
-                                        <li>Architected a Financial Intelligence Agent using a Router-Synthesizer framework with multi-step reasoning.</li>
-                                        <li>Engineered low-latency inference pipelines using Groq LPU, achieving sub-second response times.</li>
-                                        <li>Established rigorous LLM evaluation and CI/CD pipelines on AWS.</li>
-                                    </ul>
-                                </div>
+      <div class="card project">
+        <div class="project-header">
+          <h3>Financial Intelligence Agent</h3>
+        </div>
+        <p>Multi-agent financial assistant using Router-Synthesizer architecture, intelligent tool calling, Groq inference, and live market data integration.</p>
+        <div class="project-footer">
+          <div class="tech"><span>LangGraph</span><span>LLMs</span><span>Groq</span><span>FastAPI</span></div>
+          <button class="view-more-btn" onclick="openModal('proj-fia')">
+            View More
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
 
-                                <div class="relative">
-                                    <div class="absolute w-3 h-3 bg-slate-300 rounded-full -left-[29px] top-1.5 shadow-[0_0_0_4px_#ffffff]"></div>
-                                    <h4 class="text-lg font-bold text-slate-900">Developer Analyst</h4>
-                                    <p class="text-sm font-medium text-blue-600 mb-2">Nerve Solutions <span class="text-slate-400 mx-2">•</span> Mar 2021 - Sep 2025</p>
-                                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
-                                        <li>Mentored teams to deliver production releases, contributing to a 30% increase in client growth.</li>
-                                        <li>Built a machine learning recommendation engine analyzing complex behavioral datasets.</li>
-                                        <li>Designed high-performance backend algorithms using C# (.NET) for low-latency trading.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+      <div class="card project">
+        <div class="project-header">
+          <h3>CodeLens</h3>
+          <a class="gh-icon" href="https://github.com/SnehadriDutta/GitHub-CodeLens" target="_blank" title="View on GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+        <p>AI-powered GitHub codebase intelligence platform featuring AST-aware chunking, Hybrid Search, Qdrant vector search, and intelligent routing between repository and general programming questions.</p>
+        <div class="project-footer">
+          <div class="tech"><span>Tree-sitter</span><span>LangGraph</span><span>Qdrant</span><span>RAG</span></div>
+          <button class="view-more-btn" onclick="openModal('proj-codelens')">
+            View More
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
 
-                        <div class="lg:col-span-5">
-                            <h3 class="flex items-center gap-3 text-xl font-bold text-slate-800 mb-6">
-                                <div class="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center text-blue-600 shadow-sm border border-slate-200">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                                </div>
-                                Technical Arsenal
-                            </h3>
-                            
-                            <div class="flex flex-col gap-6 bg-slate-50 p-6 rounded-2xl border border-slate-100 h-full">
-                                <div>
-                                    <h4 class="text-sm font-bold text-slate-900 mb-3 border-b border-slate-200 pb-2">Agentic AI & Orchestration</h4>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-lg text-xs font-medium">LangGraph & LangChain</span>
-                                        <span class="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-lg text-xs font-medium">ReAct</span>
-                                        <span class="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-lg text-xs font-medium">Function Calling / MCP</span>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="text-sm font-bold text-slate-900 mb-3 border-b border-slate-200 pb-2">LLM Engineering</h4>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-lg text-xs font-medium">Llama 3.x & Ollama</span>
-                                        <span class="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-lg text-xs font-medium">Prompt Engineering (CoT)</span>
-                                        <span class="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-lg text-xs font-medium">Fine-Tuning</span>
-                                    </div>
-                                </div>
+      <div class="card project">
+        <div class="project-header">
+          <h3>AI Developer Assistant</h3>
+        </div>
+        <p>Enterprise AI assistant using locally hosted Ollama models with intelligent request routing for developers and business users. Generates production-ready code, documentation, and technical content.</p>
+        <div class="project-footer">
+          <div class="tech"><span>Ollama</span><span>Prompt Engineering</span><span>FastAPI</span></div>
+          <button class="view-more-btn" onclick="openModal('proj-devassist')">
+            View More
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
 
-                                <div>
-                                    <h4 class="text-sm font-bold text-slate-900 mb-3 border-b border-slate-200 pb-2">Backend & Cloud</h4>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-lg text-xs font-medium">Python & FastAPI</span>
-                                        <span class="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-lg text-xs font-medium">C# / .NET</span>
-                                        <span class="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-lg text-xs font-medium">Vector DBs (FAISS, Chroma)</span>
-                                        <span class="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-lg text-xs font-medium">AWS Deployments</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+      <div class="card project">
+        <div class="project-header">
+          <h3>Dynamic Topic Evolution Tracker</h3>
+          <a class="gh-icon" href="https://github.com/SnehadriDutta/dynamic_topic_evolution" target="_blank" title="View on GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+        <p>NLP pipeline that tracks topic evolution across time while enabling semantic search using transformer embeddings and vector similarity.</p>
+        <div class="project-footer">
+          <div class="tech"><span>NLP</span><span>Sentence Transformers</span><span>Scikit-learn</span></div>
+          <button class="view-more-btn" onclick="openModal('proj-topic')">
+            View More
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
 
-                    </div>
-                </article>
+      <div class="card project">
+        <div class="project-header">
+          <h3>YouTube Performance Predictor</h3>
+		  <a class="gh-icon" href="https://github.com/SnehadriDutta/AI-ML/tree/main/Projects/YouTube-Scrapping-Analysis" target="_blank" title="View on GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+        <p>Multimodal deep learning model combining thumbnails, titles, and channel statistics to predict video performance and estimated revenue.</p>
+        <div class="project-footer">
+          <div class="tech"><span>CNN</span><span>LSTM</span><span>TensorFlow</span></div>
+          <button class="view-more-btn" onclick="openModal('proj-yt')">
+            View More
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
 
-                <article id="projects" class="tab-content">
-                    <h2 class="text-3xl font-bold text-slate-900 mb-8 pb-4 border-b border-slate-100 relative after:content-[''] after:absolute after:bottom-[-1px] after:left-0 after:w-10 after:h-1 after:bg-blue-600 after:rounded-full">Production Systems</h2>
-                    
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        
-                        <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 relative overflow-hidden group hover:border-blue-200 transition-colors flex flex-col">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="w-10 h-10 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-blue-600">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                                </div>
-                                <span class="text-xs font-bold text-slate-400">Agentic AI</span>
-                            </div>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2">Financial Intelligence Agent</h4>
-                            <p class="text-sm text-slate-600 mb-6 flex-grow">Architected an autonomous agent utilizing a Router-Synthesizer framework. Integrated CoT reasoning with a dynamic tool-calling layer for historical analytics.</p>
-                            <span class="text-xs font-semibold text-blue-700 bg-blue-50 px-2 py-1 rounded inline-block self-start">Groq LPU • Function Calling</span>
-                        </div>
+      <div class="card project">
+        <div class="project-header">
+          <h3>Emotion Detection Engine</h3>
+          <a class="gh-icon" href="https://github.com/SnehadriDutta/AI-ML/tree/main/Projects/EmojiDetection" target="_blank" title="View on GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+        <p>Real-time computer vision application with optimized NumPy rendering achieving 30+ FPS emotion-aware emoji overlays.</p>
+        <div class="project-footer">
+          <div class="tech"><span>OpenCV</span><span>TensorFlow</span><span>NumPy</span></div>
+          <button class="view-more-btn" onclick="openModal('proj-emotion')">
+            View More
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
 
-                        <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 relative overflow-hidden group hover:border-blue-200 transition-colors flex flex-col">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="w-10 h-10 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-blue-600">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                                </div>
-                                <span class="text-xs font-bold text-slate-400">Data Retrieval</span>
-                            </div>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2">Enterprise RAG Platform</h4>
-                            <p class="text-sm text-slate-600 mb-6 flex-grow">Engineered robust RAG pipelines integrating frontier models with REST APIs. Optimized embeddings using Vector DBs (FAISS/ChromaDB) to resist hallucinations.</p>
-                            <span class="text-xs font-semibold text-blue-700 bg-blue-50 px-2 py-1 rounded inline-block self-start">Vector Search • FastAPI</span>
-                        </div>
+    </div>
+  </div>
+</section>
 
-                        <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 relative overflow-hidden group hover:border-blue-200 transition-colors flex flex-col">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="w-10 h-10 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-blue-600">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                </div>
-                                <span class="text-xs font-bold text-slate-400">Orchestration</span>
-                            </div>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2">Multi-Agent Researcher</h4>
-                            <p class="text-sm text-slate-600 mb-6 flex-grow">Developed an agentic workflow to ingest, summarize, and cross-reference dense academic research papers using LangGraph orchestration.</p>
-                            <span class="text-xs font-semibold text-blue-700 bg-blue-50 px-2 py-1 rounded inline-block self-start">LangGraph • ReAct</span>
-                        </div>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <h2>Technical Skills</h2>
+    <div class="grid skills">
+      <div class="card skill-box">
+        <h3>AI & Machine Learning</h3>
+        <ul>
+          <li>Large Language Models</li><li>Agentic AI</li><li>RAG</li>
+          <li>Prompt Engineering</li><li>Fine-Tuning</li><li>NLP</li>
+          <li>Deep Learning</li><li>Computer Vision</li>
+        </ul>
+      </div>
+      <div class="card skill-box">
+        <h3>Frameworks</h3>
+        <ul>
+          <li>LangGraph</li><li>LangChain</li><li>FastAPI</li>
+          <li>TensorFlow</li><li>PyTorch</li><li>OpenCV</li><li>Scikit-learn</li>
+        </ul>
+      </div>
+      <div class="card skill-box">
+        <h3>Infrastructure</h3>
+        <ul>
+          <li>Ollama</li><li>Groq</li><li>Qdrant</li>
+          <li>Hybrid Search</li><li>Vector Databases</li><li>Docker</li><li>Git</li>
+        </ul>
+      </div>
+      <div class="card skill-box">
+        <h3>Engineering</h3>
+        <ul>
+          <li>Python</li><li>C# / .NET</li><li>REST APIs</li>
+          <li>Low-Latency Systems</li><li>System Design</li>
+          <li>Performance Optimization</li><li>Technical Leadership</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-                        <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 relative overflow-hidden group hover:border-blue-200 transition-colors flex flex-col">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="w-10 h-10 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-blue-600">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                                </div>
-                                <span class="text-xs font-bold text-slate-400">Code Analysis</span>
-                            </div>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2">CodeLens Q&A</h4>
-                            <p class="text-sm text-slate-600 mb-6 flex-grow">AST-aware GitHub reading RAG system utilizing Tree-sitter for semantic code chunking and Qdrant for hybrid codebase search.</p>
-                            <span class="text-xs font-semibold text-blue-700 bg-blue-50 px-2 py-1 rounded inline-block self-start">AST Parsing • Tree-sitter</span>
-                        </div>
+<!-- ENGINEERING PRINCIPLES -->
+<section>
+  <div class="container">
+    <h2>Engineering Principles</h2>
+    <div class="card principles-card">
+      <p>I believe successful AI products are built on strong engineering foundations. My approach emphasizes intelligent orchestration, production reliability, scalable architectures, low-latency inference, observability, and maintainable software. Rather than focusing solely on model performance, I design end-to-end systems that deliver measurable business value in real-world environments.</p>
+    </div>
+  </div>
+</section>
 
-                    </div>
-                </article>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <h2>Let's Build Something</h2>
+    <p>Interested in AI, Machine Learning, Agentic Systems, or Backend Engineering? I'd be happy to connect.</p>
+    <div class="contact-links">
+      <a href="mailto:dutta.snehadri@gmail.com">📧 dutta.snehadri@gmail.com</a>
+      <a href="https://www.linkedin.com/in/snehadridutta/" target="_blank">💼 linkedin.com/in/snehadridutta</a>
+      <a href="https://github.com/SnehadriDutta" target="_blank">💻 github.com/SnehadriDutta</a>
+    </div>
+  </div>
+</section>
 
-            </div>
-        </section>
-    </main>
+<footer></footer>
 
-    <script>
-        function switchTab(targetId) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Remove active class from all links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Show target content
-            document.getElementById(targetId).classList.add('active');
-            
-            // Add active class to clicked links
-            document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(link => {
-                link.classList.add('active');
-            });
-        }
-    </script>
+<!-- MODALS -->
+
+<!-- Experience: Senior ML Engineer -->
+<div class="modal-overlay" id="modal-exp-senior" onclick="closeOnOverlay(event,'exp-senior')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('exp-senior')">✕</button>
+    <h3>Senior Machine Learning Engineer</h3>
+    <div class="modal-company">Nerve Solutions &nbsp;·&nbsp; October 2025 – Present &nbsp;·&nbsp; Mumbai, India</div>
+    <ul>
+      <li>Architected a Financial Intelligence Agent using Router–Synthesizer framework with multi-step reasoning, dynamic tool selection, and low-latency inference via Groq LPUs</li>
+      <li>Built scalable AI services with intelligent caching and FastAPI deployment pipelines optimized for real-time financial decision-making</li>
+      <li>Implemented robust production safeguards for reliable LLM behavior at scale</li>
+      <li>Developed an AI-powered Developer Assistant with intelligent routing between engineering and business workflows using locally hosted Ollama models</li>
+      <li>Designed a classification layer directing queries to specialized models for code generation or business content creation</li>
+      <li>Extensive prompt engineering and system instruction design to generate production-ready code with inline explanations and high-quality documentation</li>
+      <li>Worked end-to-end: AI architecture, model orchestration, deployment, observability, and inference optimization</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Experience: Developer Analyst -->
+<div class="modal-overlay" id="modal-exp-analyst" onclick="closeOnOverlay(event,'exp-analyst')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('exp-analyst')">✕</button>
+    <h3>Developer Analyst</h3>
+    <div class="modal-company">Nerve Solutions &nbsp;·&nbsp; March 2021 – September 2025 &nbsp;·&nbsp; Mumbai, India</div>
+    <ul>
+      <li>Optimized critical execution paths to process market events and business workflows within milliseconds on a real-time financial trading platform</li>
+      <li>Designed and optimized C# / .NET backend services and core algorithms, improving throughput and reducing processing latency</li>
+      <li>Built an ML-based recommendation engine analyzing user trading behavior for investment opportunity suggestions and portfolio diversification</li>
+      <li>Developed real-time risk monitoring and alerting systems, integrating ML models into production services</li>
+      <li>Built APIs bringing intelligent features into the trading platform</li>
+      <li>Led engineering initiatives: managed a team of developers, mentored junior engineers, drove architectural decisions, and conducted code reviews</li>
+      <li>Delivered multiple production releases contributing to a 30% increase in enterprise client growth</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Project: Financial Intelligence Agent -->
+<div class="modal-overlay" id="modal-proj-fia" onclick="closeOnOverlay(event,'proj-fia')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('proj-fia')">✕</button>
+    <h3>Financial Intelligence Agent</h3>
+    <div class="modal-company">LangGraph &nbsp;·&nbsp; Groq &nbsp;·&nbsp; FastAPI &nbsp;·&nbsp; LLMs</div>
+    <ul>
+      <li>Built with Router–Synthesizer architecture enabling autonomous multi-agent coordination</li>
+      <li>Multi-step reasoning with dynamic tool selection for live and historical portfolio analysis</li>
+      <li>Low-latency inference via Groq LPUs with intelligent caching for real-time responsiveness</li>
+      <li>FastAPI deployment with production safeguards ensuring reliable LLM behavior</li>
+      <li>Real-time market data integration for financial decision support</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Project: CodeLens -->
+<div class="modal-overlay" id="modal-proj-codelens" onclick="closeOnOverlay(event,'proj-codelens')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('proj-codelens')">✕</button>
+    <div class="modal-header">
+      <h3>CodeLens — AI Codebase Intelligence Platform</h3>
+      <a class="modal-gh" href="https://github.com/SnehadriDutta/GitHub-CodeLens" target="_blank" title="View on GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </div>
+    <div class="modal-company">LangGraph &nbsp;·&nbsp; Tree-sitter &nbsp;·&nbsp; Qdrant &nbsp;·&nbsp; FastAPI</div>
+    <ul>
+      <li>AST-aware ingestion pipeline using Tree-sitter preserving code structure at function and class boundaries for accurate retrieval</li>
+      <li>Production-grade RAG pipeline with hybrid search (Dense + BM25) providing file and line-level citations</li>
+      <li>LangGraph-based intelligent router dynamically switching between repository intelligence and external coding knowledge</li>
+      <li>Integrated GitHub, Stack Overflow, and Tavily Search for comprehensive general programming query responses</li>
+      <li>Production-ready APIs with rate limiting, concurrent request deduplication, and repository size circuit breakers</li>
+      <li>Fine-tuned embedding strategies and retrieval workflows to minimize hallucinations</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Project: AI Developer Assistant -->
+<div class="modal-overlay" id="modal-proj-devassist" onclick="closeOnOverlay(event,'proj-devassist')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('proj-devassist')">✕</button>
+    <h3>AI Developer Assistant</h3>
+    <div class="modal-company">Ollama &nbsp;·&nbsp; LangChain &nbsp;·&nbsp; Prompt Engineering &nbsp;·&nbsp; FastAPI</div>
+    <ul>
+      <li>Intelligent routing layer classifies user requests and directs to task-specific locally hosted Ollama models</li>
+      <li>Generates production-ready code with inline explanations for engineering teams</li>
+      <li>Produces high-quality documentation, business content, and technical writing for non-technical stakeholders</li>
+      <li>Extensive prompt engineering and system instruction design for consistent, high-quality output across both roles</li>
+      <li>Significantly improved team productivity across both developer and business functions</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Project: Topic Evolution Tracker -->
+<div class="modal-overlay" id="modal-proj-topic" onclick="closeOnOverlay(event,'proj-topic')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('proj-topic')">✕</button>
+    <div class="modal-header">
+      <h3>Dynamic Topic Evolution Tracker</h3>
+      <a class="modal-gh" href="https://github.com/SnehadriDutta/dynamic_topic_evolution" target="_blank" title="View on GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </div>
+    <div class="modal-company">NLP &nbsp;·&nbsp; Sentence Transformers &nbsp;·&nbsp; Scikit-learn &nbsp;·&nbsp; Python</div>
+    <ul>
+      <li>Temporal topic tracking engine identifying how topics evolve, merge, fragment, or decay across datasets</li>
+      <li>Combined Jaccard similarity and TF-IDF cosine similarity to accurately map related topics between time periods</li>
+      <li>Automated deduplication pipeline using token-level similarity to eliminate redundant topics before indexing</li>
+      <li>Sentence Transformer embeddings enabling natural language semantic search over historical topics</li>
+      <li>Optimized retrieval performance by reducing index size while improving search relevance</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Project: YouTube Predictor -->
+<div class="modal-overlay" id="modal-proj-yt" onclick="closeOnOverlay(event,'proj-yt')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('proj-yt')">✕</button>
+    <h3>YouTube Multimodal Performance Predictor</h3>
+	<a class="modal-gh" href="https://github.com/SnehadriDutta/AI-ML/tree/main/Projects/YouTube-Scrapping-Analysis" target="_blank" title="View on GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    <div class="modal-company">CNN &nbsp;·&nbsp; LSTM &nbsp;·&nbsp; TensorFlow &nbsp;·&nbsp; OpenCV</div>
+    <ul>
+      <li>Multi-input deep learning architecture fusing computer vision, NLP, and structured channel data</li>
+      <li>CNN-based feature extraction pipeline learning visual engagement patterns from YouTube thumbnails</li>
+      <li>LSTM-based text processing pipeline capturing semantic patterns and title effectiveness</li>
+      <li>Engineered numerical features from channel statistics, engagement metrics, and subscriber data</li>
+      <li>RPM-based revenue forecasting model combining predicted view counts with advertising rate estimates</li>
+      <li>Automated preprocessing: image normalization, Unicode-aware text cleaning, tokenization, and feature engineering</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Project: Emotion Detection -->
+<div class="modal-overlay" id="modal-proj-emotion" onclick="closeOnOverlay(event,'proj-emotion')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('proj-emotion')">✕</button>
+    <div class="modal-header">
+      <h3>Real-Time Emotion Detection Engine</h3>
+      <a class="modal-gh" href="https://github.com/SnehadriDutta/AI-ML/tree/main/Projects/EmojiDetection" target="_blank" title="View on GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </div>
+    <div class="modal-company">OpenCV &nbsp;·&nbsp; TensorFlow &nbsp;·&nbsp; NumPy &nbsp;·&nbsp; Computer Vision</div>
+    <ul>
+      <li>Real-time emotion recognition using OpenCV for face detection and TensorFlow/Keras CNN classifier</li>
+      <li>Vectorized alpha-blending engine using NumPy matrix operations, eliminating pixel-by-pixel processing</li>
+      <li>Maintains 30+ FPS via array-based computations replacing nested loops</li>
+      <li>Achieved 90% reduction in frame processing latency through vectorized image processing techniques</li>
+      <li>Dynamic face tracking with automatic overlay scaling for accurate emoji alignment with facial movements</li>
+      <li>Modular pipeline capable of real-time inference on resource-constrained and edge devices</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function openModal(id){
+  document.getElementById('modal-'+id).classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById('modal-'+id).classList.remove('active');
+  document.body.style.overflow='';
+}
+function closeOnOverlay(e,id){
+  if(e.target===e.currentTarget) closeModal(id);
+}
+
+// Hamburger — proper toggle, closes when nav link clicked
+var menuOpen = false;
+var hamburgerBtn = document.getElementById('hamburgerBtn');
+var mobileMenu = document.getElementById('mobileMenu');
+
+hamburgerBtn.addEventListener('click', function(){
+  menuOpen = !menuOpen;
+  mobileMenu.style.display = menuOpen ? 'flex' : 'none';
+});
+
+mobileMenu.querySelectorAll('a').forEach(function(a){
+  a.addEventListener('click', function(){
+    menuOpen = false;
+    mobileMenu.style.display = 'none';
+  });
+});
+
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal-overlay.active').forEach(function(el){
+      el.classList.remove('active');
+    });
+    document.body.style.overflow='';
+  }
+});
+</script>
+
 </body>
 </html>
