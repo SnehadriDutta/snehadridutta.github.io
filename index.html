@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Snehadri Dutta | Senior Machine Learning Engineer</title>
+<title>Snehadri Dutta | Sr. ML Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -107,7 +107,11 @@ nav .container{display:flex;justify-content:space-between;align-items:center;pad
 /* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:200;align-items:center;justify-content:center;padding:20px;}
 .modal-overlay.active{display:flex;}
-.modal{background:#161b22;border:1px solid #252d38;border-radius:14px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;position:relative;}
+.modal{background:#161b22;border:1px solid #252d38;border-radius:14px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;position:relative;scrollbar-width:thin;scrollbar-color:#252d38 transparent;}
+.modal::-webkit-scrollbar{width:4px;}
+.modal::-webkit-scrollbar-track{background:transparent;}
+.modal::-webkit-scrollbar-thumb{background:#252d38;border-radius:4px;}
+.modal::-webkit-scrollbar-thumb:hover{background:#3b4a63;}
 .modal h3{font-size:19px;margin-bottom:4px;}
 .modal-company{color:#60a5fa;font-size:13px;margin-bottom:18px;}
 .modal-close{position:absolute;top:16px;right:18px;background:none;border:none;color:#6b7280;font-size:18px;cursor:pointer;line-height:1;transition:color 0.15s;}
@@ -115,6 +119,9 @@ nav .container{display:flex;justify-content:space-between;align-items:center;pad
 .modal ul{list-style:none;display:grid;gap:10px;}
 .modal ul li{color:#b9c0ca;font-size:14px;padding-left:16px;position:relative;line-height:1.6;}
 .modal ul li::before{content:'';position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#3b82f6;}
+.modal-section{margin-top:20px;}
+.modal-section-title{font-size:11px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:#3b82f6;margin-bottom:10px;}
+.modal-sub-title{font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6b7280;margin:14px 0 8px;}
 
 /* CONTACT */
 .contact-links{display:grid;gap:10px;margin-top:16px;}
@@ -183,11 +190,11 @@ footer{padding:30px 0;border-top:1px solid #1a2233;text-align:center;}
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="tag">Senior Machine Learning Engineer</div>
+      <div class="tag">Sr. ML Engineer</div>
       <h1>Building Production-Grade AI Systems</h1>
       <p>I design scalable AI products powered by LLMs, Agentic AI, Deep Learning, and high-performance backend systems. My focus is on turning cutting-edge AI research into reliable products that solve real business problems.</p>
       <div class="buttons">
-        <a class="btn primary" href="#">Download Resume</a>
+        <a class="btn primary" href="Snehadri_Dutta_Resume.pdf" download>Download Resume</a>
         <a class="btn secondary" href="https://github.com/SnehadriDutta" target="_blank">View GitHub</a>
       </div>
     </div>
@@ -211,7 +218,7 @@ footer{padding:30px 0;border-top:1px solid #1a2233;text-align:center;}
 <section id="about">
   <div class="container">
     <h2>About Me</h2>
-    <p>I'm a Senior Machine Learning Engineer with a background in software engineering and a passion for building production-ready AI systems. Over the past few years, I've designed and deployed AI solutions ranging from LLM-powered assistants and autonomous agent workflows to enterprise RAG systems, recommendation engines, NLP pipelines, computer vision models, and financial intelligence platforms.</p>
+    <p>I'm a Sr Machine Learning Engineer with a background in software engineering and a passion for building production-ready AI systems. Over the past few years, I've designed and deployed AI solutions ranging from LLM-powered assistants and autonomous agent workflows to enterprise RAG systems, recommendation engines, NLP pipelines, computer vision models, and financial intelligence platforms.</p>
     <p>I enjoy working across the entire AI lifecycle—from data preparation and model development to deployment, optimization, and monitoring—with a strong emphasis on scalability, performance, and maintainability. Whether it's orchestrating multi-agent systems, integrating AI with enterprise platforms, or optimizing inference for low-latency applications, I enjoy solving problems that have measurable business impact.</p>
     <p>I'm currently focused on advancing my expertise in LLMs, agentic architectures, multimodal AI, and applied machine learning while continuing to build intelligent systems that are reliable, scalable, and production-ready. My goal is to contribute to products where AI becomes a core capability rather than just a feature.</p>
   </div>
@@ -238,7 +245,7 @@ footer{padding:30px 0;border-top:1px solid #1a2233;text-align:center;}
       <div class="card exp-card">
         <div class="exp-header">
           <div class="exp-meta">
-            <h3>Senior Machine Learning Engineer</h3>
+            <h3>Sr. ML Engineer</h3>
             <div class="company">Nerve Solutions</div>
             <div class="exp-period">October 2025 – Present &nbsp;·&nbsp; Mumbai, India</div>
           </div>
@@ -446,9 +453,18 @@ footer{padding:30px 0;border-top:1px solid #1a2233;text-align:center;}
     <h2>Let's Build Something</h2>
     <p>Interested in AI, Machine Learning, Agentic Systems, or Backend Engineering? I'd be happy to connect.</p>
     <div class="contact-links">
-      <a href="mailto:dutta.snehadri@gmail.com">📧 dutta.snehadri@gmail.com</a>
-      <a href="https://www.linkedin.com/in/snehadridutta/" target="_blank">💼 linkedin.com/in/snehadridutta</a>
-      <a href="https://github.com/SnehadriDutta" target="_blank">💻 github.com/SnehadriDutta</a>
+      <a href="mailto:dutta.snehadri@gmail.com">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:8px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        dutta.snehadri@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/snehadridutta/" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:8px;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/snehadridutta
+      </a>
+      <a href="https://github.com/SnehadriDutta" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:8px;"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        github.com/SnehadriDutta
+      </a>
     </div>
   </div>
 </section>
@@ -461,17 +477,43 @@ footer{padding:30px 0;border-top:1px solid #1a2233;text-align:center;}
 <div class="modal-overlay" id="modal-exp-senior" onclick="closeOnOverlay(event,'exp-senior')">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('exp-senior')">✕</button>
-    <h3>Senior Machine Learning Engineer</h3>
+    <h3>Sr. ML Engineer</h3>
     <div class="modal-company">Nerve Solutions &nbsp;·&nbsp; October 2025 – Present &nbsp;·&nbsp; Mumbai, India</div>
-    <ul>
-      <li>Architected a Financial Intelligence Agent using Router–Synthesizer framework with multi-step reasoning, dynamic tool selection, and low-latency inference via Groq LPUs</li>
-      <li>Built scalable AI services with intelligent caching and FastAPI deployment pipelines optimized for real-time financial decision-making</li>
-      <li>Implemented robust production safeguards for reliable LLM behavior at scale</li>
-      <li>Developed an AI-powered Developer Assistant with intelligent routing between engineering and business workflows using locally hosted Ollama models</li>
-      <li>Designed a classification layer directing queries to specialized models for code generation or business content creation</li>
-      <li>Extensive prompt engineering and system instruction design to generate production-ready code with inline explanations and high-quality documentation</li>
-      <li>Worked end-to-end: AI architecture, model orchestration, deployment, observability, and inference optimization</li>
-    </ul>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Major Initiatives</div>
+      <div class="modal-sub-title">Financial Intelligence Agent</div>
+      <ul>
+        <li>Architected a multi-agent financial intelligence platform using a Router–Synthesizer architecture</li>
+        <li>Built low-latency inference pipelines with Groq LPUs, intelligent caching, and FastAPI deployment</li>
+        <li>Implemented dynamic tool orchestration for live portfolio analysis and real-time financial insights</li>
+      </ul>
+      <div class="modal-sub-title">AI Developer Assistant</div>
+      <ul>
+        <li>Developed an enterprise AI assistant serving both engineering and business teams</li>
+        <li>Built an intelligent routing layer to direct requests to specialized locally hosted Ollama models</li>
+        <li>Engineered prompt workflows that generated production-ready code, technical documentation, and business content</li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Core Responsibilities</div>
+      <ul>
+        <li>Designed and deployed production-grade AI systems using LLMs, LangGraph, FastAPI, and Agentic AI</li>
+        <li>Built scalable inference pipelines with robust error handling, observability, and production safeguards</li>
+        <li>Optimized model performance through prompt engineering, caching, and low-latency inference strategies</li>
+        <li>Owned the complete AI lifecycle—from architecture and orchestration to deployment and monitoring</li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Leadership & Impact</div>
+      <ul>
+        <li>Led AI initiatives from concept to production, collaborating closely with engineering and business teams</li>
+        <li>Defined technical architecture and engineering best practices for enterprise AI applications</li>
+        <li>Mentored developers on modern AI development, software design, and production deployment</li>
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -481,14 +523,38 @@ footer{padding:30px 0;border-top:1px solid #1a2233;text-align:center;}
     <button class="modal-close" onclick="closeModal('exp-analyst')">✕</button>
     <h3>Developer Analyst</h3>
     <div class="modal-company">Nerve Solutions &nbsp;·&nbsp; March 2021 – September 2025 &nbsp;·&nbsp; Mumbai, India</div>
-    <ul>
-      <li>Optimized critical execution paths to process market events and business workflows within milliseconds on a real-time financial trading platform</li>
-      <li>Designed and optimized C# / .NET backend services and core algorithms, improving throughput and reducing processing latency</li>
-      <li>Built an ML-based recommendation engine analyzing user trading behavior for investment opportunity suggestions and portfolio diversification</li>
-      <li>Developed real-time risk monitoring and alerting systems, integrating ML models into production services</li>
-      <li>Built APIs bringing intelligent features into the trading platform</li>
-      <li>Led engineering initiatives: managed a team of developers, mentored junior engineers, drove architectural decisions, and conducted code reviews</li>
-      <li>Delivered multiple production releases contributing to a 30% increase in enterprise client growth</li>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Major Initiatives</div>
+      <div class="modal-sub-title">High-Performance Trading Platform</div>
+      <ul>
+        <li>Designed low-latency backend services capable of processing market events and business workflows within milliseconds</li>
+        <li>Optimized core .NET algorithms to improve throughput, reduce latency, and increase platform reliability</li>
+      </ul>
+      <div class="modal-sub-title">ML-Powered Investment Intelligence</div>
+      <ul>
+        <li>Developed a recommendation engine that analyzed trading behavior to suggest diversified investment opportunities</li>
+        <li>Built real-time risk monitoring and alerting systems integrated directly into the trading platform</li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Core Responsibilities</div>
+      <ul>
+        <li>Developed scalable backend services, REST APIs, and ML-integrated enterprise applications</li>
+        <li>Optimized critical execution paths for high-throughput, low-latency financial systems</li>
+        <li>Integrated machine learning models into production backend services</li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Leadership & Impact</div>
+      <ul>
+        <li>Managed and mentored a team of developers across multiple production releases</li>
+        <li>Conducted architecture reviews, code reviews, and performance optimization initiatives</li>
+        <li>Contributed to a 30% increase in enterprise client growth through reliable software delivery and technical leadership</li>
+      </ul>
+    </div>
     </ul>
   </div>
 </div>
@@ -572,10 +638,12 @@ footer{padding:30px 0;border-top:1px solid #1a2233;text-align:center;}
 <div class="modal-overlay" id="modal-proj-yt" onclick="closeOnOverlay(event,'proj-yt')">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('proj-yt')">✕</button>
-    <h3>YouTube Multimodal Performance Predictor</h3>
-	<a class="modal-gh" href="https://github.com/SnehadriDutta/AI-ML/tree/main/Projects/YouTube-Scrapping-Analysis" target="_blank" title="View on GitHub">
+    <div class="modal-header">
+      <h3>YouTube Multimodal Performance Predictor</h3>
+      <a class="modal-gh" href="https://github.com/SnehadriDutta/AI-ML/tree/main/Projects/YouTube-Scrapping-Analysis" target="_blank" title="View on GitHub">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
       </a>
+    </div>
     <div class="modal-company">CNN &nbsp;·&nbsp; LSTM &nbsp;·&nbsp; TensorFlow &nbsp;·&nbsp; OpenCV</div>
     <ul>
       <li>Multi-input deep learning architecture fusing computer vision, NLP, and structured channel data</li>
@@ -592,7 +660,7 @@ footer{padding:30px 0;border-top:1px solid #1a2233;text-align:center;}
 <div class="modal-overlay" id="modal-proj-emotion" onclick="closeOnOverlay(event,'proj-emotion')">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('proj-emotion')">✕</button>
-    <div class="modal-header">
+    <div class="modal-header" style="padding-right:28px;">
       <h3>Real-Time Emotion Detection Engine</h3>
       <a class="modal-gh" href="https://github.com/SnehadriDutta/AI-ML/tree/main/Projects/EmojiDetection" target="_blank" title="View on GitHub">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
